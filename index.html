@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HN Agri Business Corporation - Corporate Portfolio</title>
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js v3 CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style type="text/tailwindcss">
+        @theme {
+            --font-sans: 'Inter', sans-serif;
+            --font-display: 'Outfit', sans-serif;
+            
+            --color-brand-50: var(--color-brand-50);
+            --color-brand-100: var(--color-brand-100);
+            --color-brand-200: var(--color-brand-200);
+            --color-brand-300: var(--color-brand-300);
+            --color-brand-400: var(--color-brand-400);
+            --color-brand-500: var(--color-brand-500);
+            --color-brand-600: var(--color-brand-600);
+            --color-brand-700: var(--color-brand-700);
+            --color-brand-800: var(--color-brand-800);
+            --color-brand-900: var(--color-brand-900);
+
+            --color-accent-50: var(--color-accent-50);
+            --color-accent-100: var(--color-accent-100);
+            --color-accent-200: var(--color-accent-200);
+            --color-accent-300: var(--color-accent-300);
+            --color-accent-400: var(--color-accent-400);
+            --color-accent-500: var(--color-accent-500);
+            --color-accent-600: var(--color-accent-600);
+            --color-accent-700: var(--color-accent-700);
+            --color-accent-800: var(--color-accent-800);
+            --color-accent-900: var(--color-accent-900);
+        }
+    </style>
+
+    <style>
+        [x-cloak] { display: none !important; }
+        
+        :root {
+            /* Default fallback palette (Emerald) */
+            --color-brand-50: #ecfdf5;
+            --color-brand-100: #d1fae5;
+            --color-brand-200: #a7f3d0;
+            --color-brand-300: #6ee7b7;
+            --color-brand-400: #34d399;
+            --color-brand-500: #10b981;
+            --color-brand-600: #059669;
+            --color-brand-700: #047857;
+            --color-brand-800: #065f46;
+            --color-brand-900: #064e3b;
+
+            --color-accent-50: #fffbeb;
+            --color-accent-100: #fef3c7;
+            --color-accent-200: #fde68a;
+            --color-accent-300: #fcd34d;
+            --color-accent-400: #fbbf24;
+            --color-accent-500: #f59e0b;
+            --color-accent-600: #d97706;
+            --color-accent-700: #b45309;
+            --color-accent-800: #92400e;
+            --color-accent-900: #78350f;
+        }
+
+        /* Glassmorphism visual structures */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .timeline-line {
+            position: absolute;
+            left: 17px;
+            top: 36px;
+            bottom: -16px;
+            width: 2px;
+            background: var(--color-brand-200);
+        }
+        .timeline-item:last-child .timeline-line {
+            display: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        /* 3D Privilege Card Tilt & Glows */
+        .privilege-card-container {
+            perspective: 1000px;
+        }
+        .privilege-card-inner {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s;
+            transform-style: preserve-3d;
+        }
+        .privilege-card-container:hover .privilege-card-inner {
+            transform: rotateY(12deg) rotateX(6deg) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.35);
+        }
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        
+        /* Floating Dots Animation */
+        @keyframes float-slow {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-15px) scale(1.05);
+            }
+        }
+        .animate-float {
+            animation: float-slow 6s ease-in-out infinite;
+        }
+    </style>
+    <script>
+        function siteComponent() {
+            return {
+        site: {},
+        showAdmin: false,
+        currentHash: window.location.hash,
+        inputUser: '',
+        inputPass: '',
+        isAuthenticated: localStorage.getItem('hnabc_auth') === 'true',
+        loginError: '',
+        adminTab: 'general',
+        toasts: [],
+        showConsultationModal: false,
+        consultationName: '',
+        consultationEmail: '',
+        consultationCategory: 'incubation',
+        consultationMessage: '',
+        marketCommodities: [
+            { id: 'rice', name: 'Premium Rice', price: 620.50, unit: 'USD/Ton', change: 1.25, trend: 'up' },
+            { id: 'broken_rice', name: 'Broken Rice', price: 440.00, unit: 'USD/Ton', change: -0.45, trend: 'down' },
+            { id: 'rice_bran', name: 'Rice Bran', price: 280.25, unit: 'USD/Ton', change: 2.10, trend: 'up' },
+            { id: 'oil_cake', name: 'Nutritional Oil Cake', price: 340.80, unit: 'USD/Ton', change: 0.15, trend: 'up' },
+            { id: 'edible_oil', name: 'Premium Edible Oil', price: 1150.00, unit: 'USD/Ton', change: -0.80, trend: 'down' }
+        ],
+
+        getFallbackData() {
+            return {
+              version: '20260521_v4',
+              name: 'HN Agri Business Corporation',
+              shortName: 'HNABC',
+              logoUrl: 'logo.png',
+              bannerUrl: 'https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?q=80&w=1600&auto=format&fit=crop',
+              proprietor: 'Md. Abu Sayem',
+              title: 'Chairman',
+              proprietorImage: './proprietor.jpg',
+              established: '2018',
+              type: 'Private Company',
+              location: 'AILCHARA BAZAR, KUSHTIA SADAR, KUSHTIA, BANGLADESH',
+              phone: '+8801714718312',
+              email: 'sayemrscbd@gmail.com',
+              about: 'HN Agri Business Corporation is not just an agricultural enterprise; it\'s a testament to innovation, sustainability, and the relentless pursuit of excellence. Located in the heart of Kushtia, Bangladesh, our company is the brainchild of the visionary Md. Abu Sayem.',
+              vision: 'To play a pivotal role in advancing national agriculture, serving as a catalyst for growth and sustainability. We aspire to lead the way in innovative farming practices, enriching the lives of our fellow citizens, and contributing to a thriving agricultural sector that drives economic development and food security at the national level.',
+              commitment: 'We are committed to promoting sustainable agriculture practices, ensuring food security, and contributing to the economic development of our region. We prioritize quality, innovation, and customer satisfaction in everything we do.',
+              journey: [
+                { role: 'Consultant - Business and Project Development', company: 'HNABC', period: '2018 - Present', details: 'Provide innovative technology support services and consulting for various bio-chemical products based on rice bran oil and FMCG industries. Support project development, supervision, and commissioning with automation and advanced technology.' },
+                { role: 'Executive Director', company: 'East West Chemicals Limited, Dhaka', period: '2017 - 2018', details: 'Managed operations related to sales, research and development, and advanced technology for bio-chemical products. Contributed significantly to the growth and expansion of the company.' },
+                { role: 'General Manager - Commercial', company: 'Gazi Group of Companies Limited, Dhaka', period: '2014 - 2016', details: 'Oversaw commercial operations, including procurement, supply chain management, and distribution. Implemented effective strategies to optimize business performance and enhance profitability.' },
+                { role: 'Project Manager', company: 'Rice Science and Bio-Chemical Bangladesh Limited', period: '2012 - 2013', details: 'Led projects in collaboration with Rice Science Corporation, Japan, focusing on rice processing and bio-chemical products. Ensured successful project planning, technical analysis, and establishment.' },
+                { role: 'General Manager', company: 'Rashid Agro Food / Oil Mills / Automatic Rice Mills Ltd.', period: '2002 - 2012', details: 'Managed the largest rice processing zone in Bangladesh, including the first rice bran extraction plant and refinery. Led teams to achieve operational excellence and implemented stringent quality control measures.' }
+              ],
+              expertise: [
+                'Fast-Moving Consumer Goods (FMCG)', 'Agri Green Projects', 'Solvent Extraction & Refinery Plants',
+                'Rice Mill Automation', 'Traditional and Islamic Finance', 'Accounting Information Systems',
+                'Cost Accounting', 'Management Information Systems (MIS)', 'Project Management',
+                'Data-Driven Business Research', 'Quality Management', 'Business Process Outsourcing (BPO)',
+                'Business Development', 'Foreign Trade & Export-Import Business'
+              ],
+              products: [
+                { id: '1', name: 'Premium Quality Rice', image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?q=80&w=600&auto=format&fit=crop', description: 'Cultivated and supplied to meet the dietary needs of our customers. Our rice varieties are known for their exceptional taste and nutritional value.' },
+                { id: '2', name: 'Processed Broken Rice', image: 'https://images.unsplash.com/photo-D8PSaH0o7kk?q=80&w=600&auto=format&fit=crop', description: 'Widely used in various culinary applications, meticulously processed to ensure top-notch quality parameters.' },
+                { id: '3', name: 'High-Yield Rice Bran', image: 'https://images.unsplash.com/photo-BLAFq13gpCo?q=80&w=600&auto=format&fit=crop', description: 'An essential byproduct of rice milling, supplied for various industrial purposes including animal feed and oil extraction tracking.' },
+                { id: '4', name: 'Nutritional Oil Cake', image: 'https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=600&auto=format&fit=crop', description: 'A valuable source of clean nutrition for livestock, derived from the extraction of edible oils from premium seeds and grains.' },
+                { id: '5', name: 'Diverse Pulses Portfolio', image: 'https://images.unsplash.com/photo-t3TTC6FPOPo?q=80&w=600&auto=format&fit=crop', description: 'Providing a diverse range of high-grade pulses, meeting the critical protein needs of modern households and the food industry.' },
+                { id: '6', name: 'Premium Edible Oil', image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=600&auto=format&fit=crop', description: 'Extracted carefully from the finest seeds, ideal for cooking and food preparation, ensuring both premium taste and rich nutrition.' }
+              ],
+              services: [
+                { id: '1', title: 'Project Appraisal', description: 'Assisting in evaluating and analyzing agricultural projects, ensuring they are structurally, financially viable and sustainably sound.' },
+                { id: '2', title: 'Business Proposals', description: 'Our elite team creates comprehensive, institutional-grade business proposals, helping you secure target investments and strategic partnerships.' },
+                { id: '3', title: 'Business Research', description: 'Conducting highly strategic, in-depth market research and feasibility studies to aid in new idea engineering and corporate expansion strategies.' }
+              ],
+              whyChooseUs: [
+                { title: 'Quality Assurance', desc: 'We adhere to stringent quality standards, ensuring that our products meet the highest levels of quality and safety protocols.' },
+                { title: 'Competitive Pricing', desc: 'We offer competitive wholesale prices without ever compromising on the ultimate quality of our products and services.' },
+                { title: 'Unmatched Expertise', desc: 'With our extensive structural experience and industrial expertise, we bring valuable operational knowledge to help you succeed.' },
+                { title: 'Eco Sustainability', desc: 'We are dedicated to sustainable farming practices that protect our environment and natively support the community.' }
+              ],
+              theme: {
+                current: 'emerald'
+              },
+              messages: [
+                { id: 1, name: 'Kazi Farhan', email: 'farhan@bengalgroup.bd', category: 'wholesale', text: 'Inquiry regarding bulk purchase of Premium Rice Bran Oil and Oil Cakes for our feed mills. Please send wholesale price list.', date: '2026-05-21 08:32 AM' },
+                { id: 2, name: 'Dr. Tareq Rahman', email: 'tareq@agroinnovations.com', category: 'consulting', text: 'We are planning to set up a new solvent extraction plant in Bogura. Requesting a consultation meeting with Md. Abu Sayem.', date: '2026-05-21 09:15 AM' }
+              ]
+            };
+        },
+
+        init() {
+            // Sync hash immediately so routing works on direct URL load
+            this.currentHash = window.location.hash;
+
+            // Securely load from siteData.js or fallback safely
+            const migrateProducts = (siteObj) => {
+                if (siteObj) {
+                    let migrated = false;
+                    if (!siteObj.proprietorImage) {
+                        siteObj.proprietorImage = "./proprietor.jpg";
+                        migrated = true;
+                    }
+                    if (!siteObj.logoUrl) {
+                        siteObj.logoUrl = "logo.png";
+                        migrated = true;
+                    }
+                    if (!siteObj.bannerUrl) {
+                        siteObj.bannerUrl = "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?q=80&w=1600&auto=format&fit=crop";
+                        migrated = true;
+                    }
+                    if (siteObj.products) {
+                        const migrations = {
+                            '1574316071802-0d684efa7bf5': 'D8PSaH0o7kk',
+                            '1599599810769-bcde5a160d32': 'BLAFq13gpCo',
+                            '1516467508483-a7212febe31a': '1500595046743-cd271d694d30',
+                            '1547058881-aa0edd92aab3': 't3TTC6FPOPo'
+                        };
+                        siteObj.products.forEach(p => {
+                            for (const [oldId, newId] of Object.entries(migrations)) {
+                                if (p.image && p.image.includes(oldId)) {
+                                    p.image = p.image.replace(oldId, newId);
+                                    migrated = true;
+                                }
+                            }
+                        });
+                    }
+                    if (!siteObj.messages) {
+                        siteObj.messages = [
+                            { id: 1, name: 'Kazi Farhan', email: 'farhan@bengalgroup.bd', category: 'wholesale', text: 'Inquiry regarding bulk purchase of Premium Rice Bran Oil and Oil Cakes for our feed mills. Please send wholesale price list.', date: '2026-05-21 08:32 AM' },
+                            { id: 2, name: 'Dr. Tareq Rahman', email: 'tareq@agroinnovations.com', category: 'consulting', text: 'We are planning to set up a new solvent extraction plant in Bogura. Requesting a consultation meeting with Md. Abu Sayem.', date: '2026-05-21 09:15 AM' }
+                        ];
+                        migrated = true;
+                    }
+                    if (migrated) {
+                        localStorage.setItem('hnabc_data', JSON.stringify(siteObj));
+                    }
+                }
+            };
+
+            const syncData = (mOrFallbackData) => {
+                const cached = localStorage.getItem('hnabc_data');
+                if (cached) {
+                    try {
+                        const parsed = JSON.parse(cached);
+                        if (parsed.version !== mOrFallbackData.version) {
+                            this.site = mOrFallbackData;
+                            localStorage.setItem('hnabc_data', JSON.stringify(mOrFallbackData));
+                        } else {
+                            this.site = parsed;
+                        }
+                    } catch (e) {
+                        this.site = mOrFallbackData;
+                        localStorage.setItem('hnabc_data', JSON.stringify(mOrFallbackData));
+                    }
+                } else {
+                    this.site = mOrFallbackData;
+                    localStorage.setItem('hnabc_data', JSON.stringify(mOrFallbackData));
+                }
+                migrateProducts(this.site);
+                if (!this.site.theme) this.site.theme = { current: 'emerald' };
+            };
+
+            import('./siteData.js')
+                .then(m => {
+                    syncData(m.initialSiteData);
+                })
+                .catch(err => {
+                    console.warn('Dynamic import failed, using inlined fallback for file:// protocol support:', err);
+                    syncData(this.getFallbackData());
+                });
+            
+            // Simulate live commodity market updates
+            setInterval(() => {
+                this.marketCommodities.forEach(c => {
+                    const fluctuation = (Math.random() - 0.49) * 1.5; // slight positive drift
+                    const oldPrice = c.price;
+                    c.price = Math.max(10, parseFloat((c.price + fluctuation).toFixed(2)));
+                    c.change = parseFloat((((c.price - oldPrice) / oldPrice) * 100).toFixed(2));
+                    c.trend = c.change > 0.05 ? 'up' : (c.change < -0.05 ? 'down' : 'stable');
+                });
+            }, 3000);
+
+            // Listen to browser URL path changes automatically
+            window.addEventListener('hashchange', () => {
+                this.currentHash = window.location.hash;
+                if (this.currentHash === '#admin') {
+                    this.showAdmin = true;
+                } else {
+                    this.showAdmin = false;
+                }
+            });
+        },
+
+        submitLogin() {
+            if (this.inputUser === 'HNABC' && this.inputPass === 'HNABC123') {
+                this.isAuthenticated = true;
+                localStorage.setItem('hnabc_auth', 'true');
+                this.loginError = '';
+                this.pushToast('success', 'Authenticated successfully! Gateway unlocked.');
+            } else {
+                this.loginError = 'Access Denied: Invalid Credentials.';
+                this.pushToast('error', 'Login attempt denied.');
+            }
+        },
+
+        logout() {
+            this.isAuthenticated = false;
+            this.showAdmin = false;
+            localStorage.removeItem('hnabc_auth');
+            this.currentHash = '';
+            window.location.hash = '';
+            this.inputUser = '';
+            this.inputPass = '';
+            this.pushToast('info', 'Secure session ended.');
+        },
+
+        saveData() {
+            localStorage.setItem('hnabc_data', JSON.stringify(this.site));
+            this.pushToast('success', 'Corporate configuration synchronized successfully!');
+            this.showAdmin = false;
+            this.currentHash = '';
+            window.location.hash = '';
+        },
+
+        submitInquiry(name, email, text, category) {
+            if (!this.site.messages) {
+                this.site.messages = [];
+            }
+            const pad = (n) => n < 10 ? '0' + n : n;
+            const now = new Date();
+            const dateStr = now.getFullYear() + '-' + pad(now.getMonth()+1) + '-' + pad(now.getDate()) + ' ' + pad(now.getHours()) + ':' + pad(now.getMinutes()) + (now.getHours() >= 12 ? ' PM' : ' AM');
+
+            const newMsg = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                category: category,
+                text: text,
+                date: dateStr
+            };
+            this.site.messages.unshift(newMsg);
+            localStorage.setItem('hnabc_data', JSON.stringify(this.site));
+            this.pushToast('success', 'Thank you! Your ' + category + ' inquiry has been received.');
+        },
+
+        deleteMessage(id) {
+            if (confirm('Delete this inquiry message permanently?')) {
+                this.site.messages = this.site.messages.filter(m => m.id !== id);
+                localStorage.setItem('hnabc_data', JSON.stringify(this.site));
+                this.pushToast('info', 'Message deleted.');
+            }
+        },
+
+        clearAllMessages() {
+            if (confirm('Clear all inquiry messages from the inbox?')) {
+                this.site.messages = [];
+                localStorage.setItem('hnabc_data', JSON.stringify(this.site));
+                this.pushToast('info', 'All messages cleared.');
+            }
+        },
+
+        resetDefaults() {
+            if (confirm('Revert all live overrides back to defaults? This will restore initial file states.')) {
+                localStorage.removeItem('hnabc_data');
+                import('./siteData.js')
+                    .then(m => {
+                        this.site = JSON.parse(JSON.stringify(m.initialSiteData));
+                        if (!this.site.theme) this.site.theme = { current: 'emerald' };
+                        this.pushToast('info', 'Restored default configuration.');
+                    })
+                    .catch(err => {
+                        const fallbackData = this.getFallbackData();
+                        this.site = JSON.parse(JSON.stringify(fallbackData));
+                        this.pushToast('info', 'Restored default configuration.');
+                    });
+            }
+        },
+
+        get themeStyles() {
+            const currentTheme = this.site && this.site.theme && this.site.theme.current ? this.site.theme.current : 'emerald';
+            const palettes = {
+              emerald: {
+                brand: {
+                  50: '#ecfdf5', 100: '#d1fae5', 200: '#a7f3d0', 300: '#6ee7b7', 400: '#34d399',
+                  500: '#10b981', 600: '#059669', 700: '#047857', 800: '#065f46', 900: '#064e3b'
+                },
+                accent: {
+                  50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d', 400: '#fbbf24',
+                  500: '#f59e0b', 600: '#d97706', 700: '#b45309', 800: '#92400e', 900: '#78350f'
+                }
+              },
+              amber: {
+                brand: {
+                  50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d', 400: '#fbbf24',
+                  500: '#f59e0b', 600: '#d97706', 700: '#b45309', 800: '#92400e', 900: '#78350f'
+                },
+                accent: {
+                  50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5', 400: '#f87171',
+                  500: '#ef4444', 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d'
+                }
+              },
+              ocean: {
+                brand: {
+                  50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc', 400: '#38bdf8',
+                  500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e'
+                },
+                accent: {
+                  50: '#f5f3ff', 100: '#ede9fe', 200: '#ddd6fe', 300: '#c4b5fd', 400: '#a78bfa',
+                  500: '#8b5cf6', 600: '#7c3aed', 700: '#6d28d9', 800: '#5b21b6', 900: '#4c1d95'
+                }
+              },
+              forest: {
+                brand: {
+                  50: '#f2f5ee', 100: '#e4ebda', 200: '#cbdbb7', 300: '#abc68b', 400: '#8cae65',
+                  500: '#6c9143', 600: '#537232', 700: '#3c5224', 800: '#273617', 900: '#151d0c'
+                },
+                accent: {
+                  50: '#fffdf5', 100: '#fef9e1', 200: '#fdf1be', 300: '#fbe492', 400: '#fad665',
+                  500: '#f8c538', 600: '#d9a322', 700: '#b48117', 800: '#90620f', 900: '#754d09'
+                }
+              }
+            };
+            const palette = palettes[currentTheme] || palettes.emerald;
+            let styles = '';
+            for (const group in palette) {
+              for (const shade in palette[group]) {
+                styles += `--color-${group}-${shade}: ${palette[group][shade]}; `;
+              }
+            }
+            return styles;
+        },
+
+        addJourney() {
+            if (!this.site.journey) this.site.journey = [];
+            this.site.journey.push({
+                role: 'New Lead Consultant / Project Manager',
+                company: 'Agricultural Enterprise / Commission',
+                period: '2024 - Present',
+                details: 'Providing business process outsourcing, plant optimization, or bio-chemical setup consultancy services.'
+            });
+            this.pushToast('success', 'Added new milestone to timeline matrix.');
+        },
+
+        removeJourney(idx) {
+            this.site.journey.splice(idx, 1);
+            this.pushToast('info', 'Milestone removed from timeline matrix.');
+        },
+
+        addExpertise() {
+            const skill = prompt('Enter new expertise tag:');
+            if (skill && skill.trim()) {
+                if (!this.site.expertise) this.site.expertise = [];
+                this.site.expertise.push(skill.trim());
+                this.pushToast('success', 'Added strength tag: ' + skill.trim());
+            }
+        },
+
+        removeExpertise(idx) {
+            this.site.expertise.splice(idx, 1);
+            this.pushToast('info', 'Strength tag removed.');
+        },
+
+        addProduct() {
+            if (!this.site.products) this.site.products = [];
+            this.site.products.push({
+                id: Date.now().toString(),
+                name: 'New Premium Quality Product',
+                image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&q=80',
+                description: 'Enter product description detailing grade parameters, processing techniques, and corporate packaging configurations.'
+            });
+            this.pushToast('success', 'Added product card listing.');
+        },
+
+        removeProduct(idx) {
+            this.site.products.splice(idx, 1);
+            this.pushToast('info', 'Product card listing removed.');
+        },
+
+        addService() {
+            if (!this.site.services) this.site.services = [];
+            this.site.services.push({
+                id: Date.now().toString(),
+                title: 'New Advisory Support Framework',
+                description: 'Description of the professional consultation framework, logistics support, and project appraisal.'
+            });
+            this.pushToast('success', 'Added service framework card.');
+        },
+
+        removeService(idx) {
+            this.site.services.splice(idx, 1);
+            this.pushToast('info', 'Service card removed.');
+        },
+
+        pushToast(type, message) {
+            const id = Date.now() + Math.random().toString(36).substr(2, 5);
+            this.toasts.push({ id, type, message });
+            setTimeout(() => this.removeToast(id), 4000);
+        },
+
+        removeToast(id) {
+            this.toasts = this.toasts.filter(t => t.id !== id);
+        },
+
+        getExportCode() {
+            return 'export const initialSiteData = ' + JSON.stringify(this.site, null, 2) + ';';
+        },
+
+        copyExportCode() {
+            navigator.clipboard.writeText(this.getExportCode())
+                .then(() => this.pushToast('success', 'Source configuration copied to clipboard!'))
+                .catch(err => this.pushToast('error', 'Failed to copy to clipboard.'));
+        }
+      };
+        }
+    </script>
+</head>
+<body class="bg-stone-50 font-sans antialiased text-stone-700 selection:bg-brand-500 selection:text-white"
+      :style="themeStyles"
+      x-data="siteComponent()">
+
+    <!-- SVG SPRITE SHEET FOR SYSTEM-WIDE ICONS -->
+    <svg class="hidden">
+        <g id="icon-leaf"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 0 8.5C17 15 15 20 11 20z" fill="none" stroke="currentColor" stroke-width="2"></path><path d="M19 2c-2.26 4.33-5.27 7.14-8 10" fill="none" stroke="currentColor" stroke-width="2"></path></g>
+        <g id="icon-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" fill="none" stroke="currentColor" stroke-width="2"></path></g>
+        <g id="icon-award"><circle cx="12" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" fill="none" stroke="currentColor" stroke-width="2"></polyline></g>
+        <g id="icon-settings"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" fill="none" stroke="currentColor" stroke-width="2"></path></g>
+        <g id="icon-close"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"></line><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"></line></g>
+        <g id="icon-plus"><line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2"></line><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2"></line></g>
+        <g id="icon-trash"><polyline points="3 6 5 6 21 6" fill="none" stroke="currentColor" stroke-width="2"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" fill="none" stroke="currentColor" stroke-width="2"></path><line x1="10" y1="11" x2="10" y2="17" stroke="currentColor" stroke-width="2"></line><line x1="14" y1="11" x2="14" y2="17" stroke="currentColor" stroke-width="2"></line></g>
+        <g id="icon-check"><polyline points="20 6 9 17 4 12" fill="none" stroke="currentColor" stroke-width="2"></polyline></g>
+        <g id="icon-refresh"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" fill="none" stroke="currentColor" stroke-width="2"></path></g>
+        <g id="icon-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none" stroke="currentColor" stroke-width="2"></path><polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" stroke-width="2"></polyline></g>
+        <g id="icon-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="2"></path></g>
+        <g id="icon-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="none" stroke="currentColor" stroke-width="2"></path><circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2"></circle></g>
+        <g id="icon-info"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"></circle><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"></line><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2"></line></g>
+        <g id="icon-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="none" stroke="currentColor" stroke-width="2"></polygon></g>
+        <g id="icon-logout"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" fill="none" stroke="currentColor" stroke-width="2"></path><polyline points="16 17 21 12 16 7" fill="none" stroke="currentColor" stroke-width="2"></polyline><line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2"></line></g>
+    </svg>
+
+    <!-- PUBLIC FRONT SITE VIEW -->
+    <div>
+        
+        <!-- HEADER GLASS NAVIGATION -->
+        <nav class="fixed top-0 inset-x-0 z-40 glass-nav transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                <a href="#" class="flex items-center gap-3.5 group flex-shrink-0">
+                    <div class="w-10 h-10 sm:w-12 h-12 rounded-xl overflow-hidden shadow-sm group-hover:scale-105 transition-transform duration-300 flex items-center justify-center bg-white border border-stone-200 p-0.5">
+                        <img :src="site.logoUrl || 'logo.png'" alt="HNABC Logo" class="w-full h-full object-contain">
+                    </div>
+                    <span class="font-display font-extrabold text-base sm:text-lg tracking-tight text-stone-900 leading-tight hidden sm:block" x-text="site.name"></span>
+                    <span class="font-display font-extrabold text-base tracking-tight text-stone-900 leading-tight sm:hidden" x-text="site.shortName || 'HNABC'"></span>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-5 font-semibold text-stone-600 text-xs tracking-wide">
+                    <a href="#about" class="hover:text-brand-700 transition-colors duration-200">About &amp; Leadership</a>
+                    <a href="#experience" class="hover:text-brand-700 transition-colors duration-200">Professional Matrix</a>
+                    <a href="#products" class="hover:text-brand-700 transition-colors duration-200">Product Catalog</a>
+                    <a href="#services" class="hover:text-brand-700 transition-colors duration-200">Services &amp; Values</a>
+                    <a href="#contact" class="hover:text-brand-700 transition-colors duration-200">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-2.5 flex-shrink-0">
+                    <button @click="showAdmin = true" class="flex items-center gap-1.5 px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-xl bg-gradient-to-r from-stone-900 to-stone-850 text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:from-brand-600 hover:to-brand-700 hover:shadow-lg hover:shadow-brand-600/20 active:scale-[0.97] transition-all duration-300 cursor-pointer">
+                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4"><use href="#icon-settings"></use></svg>
+                        <span class="hidden md:inline">Admin Gateway</span>
+                        <span class="md:hidden">Admin</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- HERO SECTION -->
+        <header class="relative min-h-[85vh] flex items-center justify-center overflow-hidden pt-28 pb-16 bg-stone-900">
+            <div class="absolute inset-0 z-0">
+                <img :src="site.bannerUrl || 'https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?q=80&w=1600&auto=format&fit=crop'" alt="Agri background" class="w-full h-full object-cover opacity-25 object-center rounded-b-3xl">
+                <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/85 to-transparent"></div>
+            </div>
+
+            <div class="relative z-10 max-w-5xl mx-auto px-6 text-center text-white space-y-8">
+                <div class="flex justify-center">
+                    <div class="w-28 h-28 rounded-2xl overflow-hidden bg-white/95 border border-white/20 p-1.5 shadow-2xl hover:scale-105 transition-transform duration-300">
+                        <img :src="site.logoUrl || 'logo.png'" alt="HNABC Logo" class="w-full h-full object-contain">
+                    </div>
+                </div>
+
+                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 backdrop-blur-md">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-400" x-text="site.type + ' • Est. ' + site.established"></span>
+                </div>
+
+                <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl tracking-tight leading-none" x-text="site.name"></h1>
+                <p class="max-w-3xl mx-auto text-lg md:text-xl text-stone-200 font-normal leading-relaxed" x-text="site.about"></p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-brand-700 text-white font-bold shadow-lg shadow-brand-600/25 hover:from-brand-550 hover:to-brand-650 hover:translate-y-[-2px] hover:shadow-xl hover:shadow-brand-600/35 active:scale-[0.98] transition-all duration-300 text-center">
+                        Explore Our Profile
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-white/20 text-white font-bold hover:bg-white/10 hover:translate-y-[-2px] active:scale-[0.98] transition-all duration-300 text-center">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- IMPACT METRICS & COMMODITY PRICES SECTION -->
+        <section class="relative z-20 -mt-10 max-w-7xl mx-auto px-6">
+            <!-- 1. Stats Grid (Overlapping Hero) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 sm:p-8 bg-white border border-stone-200/80 rounded-3xl shadow-xl backdrop-blur-xl">
+                <div class="text-center p-3 border-r border-stone-100 last:border-r-0">
+                    <span class="block font-display font-black text-3xl sm:text-4xl text-brand-600">Est. 2018</span>
+                    <span class="block text-xs font-bold text-stone-700 uppercase tracking-widest mt-1">Deep Rooted Trust</span>
+                </div>
+                <div class="text-center p-3 border-r border-stone-100 last:border-r-0">
+                    <span class="block font-display font-black text-3xl sm:text-4xl text-brand-600">6+</span>
+                    <span class="block text-xs font-bold text-stone-700 uppercase tracking-widest mt-1">Agri-Commodities</span>
+                </div>
+                <div class="text-center p-3 border-r border-stone-100 last:border-r-0">
+                    <span class="block font-display font-black text-3xl sm:text-4xl text-brand-600">14+</span>
+                    <span class="block text-xs font-bold text-stone-700 uppercase tracking-widest mt-1">FMCG Consulting Pillars</span>
+                </div>
+                <div class="text-center p-3 last:border-r-0">
+                    <span class="block font-display font-black text-3xl sm:text-4xl text-brand-600">Kushtia</span>
+                    <span class="block text-xs font-bold text-stone-700 uppercase tracking-widest mt-1">Bangladesh Hub</span>
+                </div>
+            </div>
+
+            <!-- 2. Live Commodity Prices Board -->
+            <div class="mt-8 bg-stone-900 border border-stone-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-16 -top-16 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl"></div>
+                <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl"></div>
+                
+                <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Live Commodities Trading Board</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl sm:text-2xl text-white mt-1">Global Market Indicators</h3>
+                    </div>
+                    <div class="text-xs text-stone-400 flex items-center gap-1.5 bg-stone-800/80 border border-stone-700 px-3 py-1.5 rounded-xl">
+                        <svg class="w-3.5 h-3.5 animate-spin text-brand-500"><use href="#icon-refresh"></use></svg>
+                        <span>Auto-updating live metrics (USD/Ton)</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 relative z-10">
+                    <template x-for="item in marketCommodities" :key="item.id">
+                        <div class="p-4 rounded-2xl bg-stone-950/60 border border-stone-800 hover:border-stone-700 transition-all duration-300">
+                            <span class="block text-xs text-stone-400 font-bold uppercase tracking-wider" x-text="item.name"></span>
+                            <div class="flex items-baseline gap-1 mt-2">
+                                <span class="font-mono text-lg sm:text-xl font-bold text-white" x-text="'$' + item.price.toFixed(2)"></span>
+                            </div>
+                            <div class="flex items-center gap-1 mt-2.5">
+                                <span :class="{
+                                    'text-emerald-500 bg-emerald-500/10': item.trend === 'up',
+                                    'text-red-500 bg-red-500/10': item.trend === 'down',
+                                    'text-stone-300 bg-stone-500/20': item.trend === 'stable'
+                                }" class="text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5">
+                                    <span x-show="item.trend === 'up'">▲</span>
+                                    <span x-show="item.trend === 'down'">▼</span>
+                                    <span x-text="(item.change >= 0 ? '+' : '') + item.change.toFixed(2) + '%'"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT & LEADERSHIP SECTION -->
+        <section id="about" class="py-24 max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-12 gap-16 items-start">
+                
+                <!-- Strategy & Vision (Left side) -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div>
+                        <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">National Strategy & Vision</span>
+                        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-stone-900 tracking-tight mt-3 mb-6">
+                            Leading Agricultural Innovation
+                        </h2>
+                        <div class="w-20 h-1.5 bg-brand-500 rounded-full mb-8"></div>
+                        <p class="text-2xl md:text-3xl font-serif italic text-stone-800 leading-normal" x-text="'&ldquo;' + site.vision + '&rdquo;'"></p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="p-6 rounded-3xl bg-brand-50 border border-brand-100/50 shadow-sm">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-200/50 text-[10px] font-bold text-brand-800 uppercase tracking-wider mb-4">
+                                <svg class="w-3.5 h-3.5"><use href="#icon-leaf"></use></svg>
+                                Vision Statement
+                            </span>
+                            <p class="text-sm text-stone-850 font-normal leading-relaxed" x-text="site.vision"></p>
+                        </div>
+
+                        <div class="p-6 rounded-3xl bg-accent-50 border border-accent-100/50 shadow-sm">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-200/50 text-[10px] font-bold text-accent-800 uppercase tracking-wider mb-4">
+                                <svg class="w-3.5 h-3.5"><use href="#icon-award"></use></svg>
+                                Our Commitment
+                            </span>
+                            <p class="text-sm text-stone-850 font-normal leading-relaxed" x-text="site.commitment"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chairman Profile & Strengths (Right side) -->
+                <div class="lg:col-span-5 p-8 rounded-3xl bg-white border border-stone-200 shadow-md">
+                    <div class="flex items-center gap-4 mb-6 pb-6 border-b border-stone-100">
+                        <div class="relative w-16 h-16 rounded-2xl overflow-hidden shadow-lg border border-stone-200 bg-stone-100 flex-shrink-0">
+                            <template x-if="site.proprietorImage">
+                                <img :src="site.proprietorImage" class="w-full h-full object-cover object-center" :alt="site.proprietor">
+                            </template>
+                            <template x-if="!site.proprietorImage">
+                                <div class="w-full h-full bg-brand-900 text-white flex items-center justify-center font-display font-bold text-2xl">
+                                    AS
+                                </div>
+                            </template>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-extrabold text-xl text-stone-900" x-text="site.proprietor"></h3>
+                            <span class="text-xs font-semibold text-brand-600 uppercase tracking-wider" x-text="site.title + ' & Founder'"></span>
+                        </div>
+                    </div>
+
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-4">Core Strengths & Expertise</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <template x-for="(tag, idx) in site.expertise" :key="idx">
+                            <span class="px-3 py-1.5 rounded-lg bg-stone-100 text-stone-600 text-xs font-medium hover:bg-brand-50 hover:text-brand-700 transition-colors" x-text="tag"></span>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE TIMELINE MATRIX -->
+        <section id="experience" class="py-24 bg-stone-100 border-y border-stone-200/50">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Background Foundation</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-stone-900 mt-3 mb-6">
+                        Professional Experience Matrix
+                    </h2>
+                    <p class="text-stone-700 font-normal leading-relaxed">
+                        A detailed catalog of career and industrial milestones framing HNABC's high-tech consulting capability.
+                    </p>
+                </div>
+
+                <div class="space-y-8 relative">
+                    <template x-for="(job, index) in site.journey" :key="index">
+                        <div class="timeline-item flex gap-6 relative pl-2 md:pl-0">
+                            <div class="timeline-line"></div>
+                            
+                            <div class="w-9 h-9 rounded-full bg-brand-50 border-2 border-brand-500 flex items-center justify-center text-brand-600 z-10 shrink-0">
+                                <svg class="w-4 h-4"><use href="#icon-briefcase"></use></svg>
+                            </div>
+
+                            <div class="flex-1 p-6 rounded-3xl bg-white border border-stone-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                                    <div>
+                                        <h3 class="font-display font-bold text-lg text-stone-900" x-text="job.role"></h3>
+                                        <span class="text-xs font-semibold text-brand-600 uppercase tracking-wider" x-text="job.company"></span>
+                                    </div>
+                                    <span class="inline-flex px-3 py-1 rounded-full bg-stone-200/80 text-stone-700 text-xs font-bold tracking-wider self-start" x-text="job.period"></span>
+                                </div>
+                                <p class="text-stone-700 text-sm font-normal leading-relaxed" x-text="job.details"></p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT CATALOG PORTFOLIO -->
+        <section id="products" class="py-24 max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Trade Commodities</span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-stone-900 mt-3 mb-6">
+                    Core Agricultural Products
+                </h2>
+                <p class="text-stone-700 font-normal leading-relaxed">
+                    Premium supply configurations engineered for national grade reliability and commercial bioprocessing optimization.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <template x-for="(prod, index) in site.products" :key="prod.id">
+                    <div class="group bg-white rounded-2xl border border-stone-200/60 shadow-sm overflow-hidden hover:scale-[1.02] hover:shadow-md transition-all duration-300 flex flex-col">
+                        <div class="h-48 overflow-hidden relative">
+                            <img :src="prod.image" :alt="prod.name" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 pointer-events-none rounded-t-2xl border-t border-x border-white/10 shadow-[inset_0_4px_12px_rgba(0,0,0,0.05)]"></div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-stone-900 mb-2 group-hover:text-brand-700 transition-colors" x-text="prod.name"></h3>
+                                <p class="text-stone-700 text-sm font-normal leading-relaxed mb-4" x-text="prod.description"></p>
+                            </div>
+                            <div class="text-xs font-semibold text-brand-600 tracking-wider uppercase pt-2 border-t border-stone-100" x-text="'Category 0' + (index + 1)"></div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- SERVICES & VALUE PILLARS -->
+        <section id="services" class="py-24 bg-stone-100 border-t border-stone-200/50">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid lg:grid-cols-12 gap-16 items-start">
+                    
+                    <!-- Consultation Frameworks (Left) -->
+                    <div class="lg:col-span-6 space-y-8">
+                        <div>
+                            <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Solutions & Consulting</span>
+                            <h2 class="font-display font-extrabold text-3xl text-stone-900 mt-2 mb-4">Industrial Consultation Frameworks</h2>
+                            <p class="text-stone-700 font-normal text-sm leading-relaxed">Industrial project appraisals, detailed strategic business planning, and market studies.</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <template x-for="srv in site.services" :key="srv.id">
+                                <div class="p-6 rounded-3xl bg-white border border-stone-200 flex gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+                                        <svg class="w-5 h-5"><use href="#icon-star"></use></svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-display font-bold text-base text-stone-900 mb-2" x-text="srv.title"></h3>
+                                        <p class="text-stone-700 font-normal text-xs leading-relaxed" x-text="srv.description"></p>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Value Pillars (Right) -->
+                    <div class="lg:col-span-6 space-y-8">
+                        <div>
+                            <span class="text-xs font-bold text-accent-600 uppercase tracking-widest">Competitive Advantage</span>
+                            <h2 class="font-display font-extrabold text-3xl text-stone-900 mt-2 mb-4">Why Choose Us?</h2>
+                            <p class="text-stone-700 font-normal text-sm leading-relaxed">Our dedication to operational standards guarantees reliable output at every lifecycle step.</p>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <template x-for="pillar in site.whyChooseUs" :key="pillar.title">
+                                <div class="p-6 rounded-3xl bg-white border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+                                    <h3 class="font-display font-bold text-base text-stone-900 mb-2" x-text="pillar.title"></h3>
+                                    <p class="text-stone-700 font-normal text-xs leading-relaxed" x-text="pillar.desc"></p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+        <!-- SUSTAINABILITY & ESG COMMITMENT SECTION -->
+        <section id="sustainability" class="py-24 bg-white border-t border-stone-200/50">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Sustainability & Corporate Stewardship</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-stone-900 tracking-tight mt-3 mb-4">
+                        Protecting Our Fields, Enriching Our Future
+                    </h2>
+                    <div class="w-20 h-1.5 bg-emerald-500 rounded-full mx-auto mb-6"></div>
+                    <p class="text-stone-700 font-normal text-sm leading-relaxed">
+                        HN Agri Business Corporation integrates ESG (Environmental, Social, Governance) values directly into our processing, consulting, and trading operations, ensuring eco-conscious agricultural development across Bangladesh.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1: Eco-Friendly Extraction -->
+                    <div class="p-8 rounded-3xl bg-stone-50 border border-stone-200/60 shadow-sm hover:shadow-xl hover:translate-y-[-4px] transition-all duration-300 flex flex-col justify-between group">
+                        <div class="space-y-6">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-stone-900">Eco-Friendly Extraction</h3>
+                            <p class="text-stone-700 font-normal text-xs leading-relaxed">
+                                Our solvent extraction advisory frameworks prioritize zero-effluent and clean condensate recycling, ensuring minimal carbon footprints during rice bran oil refining and processing.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-stone-200/50">
+                            <span class="text-[10px] font-bold text-emerald-600 tracking-wider uppercase">0% Hazardous Effluent</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Farming Community Support -->
+                    <div class="p-8 rounded-3xl bg-stone-50 border border-stone-200/60 shadow-sm hover:shadow-xl hover:translate-y-[-4px] transition-all duration-300 flex flex-col justify-between group">
+                        <div class="space-y-6">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-stone-900">Farmer-First Sourcing</h3>
+                            <p class="text-stone-700 font-normal text-xs leading-relaxed">
+                                We foster direct partnerships with local farmers in Kushtia, offering competitive pricing, soil nutrition guidance, and dynamic crop planning to support rural micro-economies.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-stone-200/50">
+                            <span class="text-[10px] font-bold text-amber-600 tracking-wider uppercase">Direct Farmer Partnerships</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Green Bio-Chemicals -->
+                    <div class="p-8 rounded-3xl bg-stone-50 border border-stone-200/60 shadow-sm hover:shadow-xl hover:translate-y-[-4px] transition-all duration-300 flex flex-col justify-between group">
+                        <div class="space-y-6">
+                            <div class="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-stone-900">Green Consulting</h3>
+                            <p class="text-stone-700 font-normal text-xs leading-relaxed">
+                                Our bio-chemical and FMCG advisory division helps partners design biodegradable formulations, eco-friendly detergents, and circular supply chain flows.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-stone-200/50">
+                            <span class="text-[10px] font-bold text-sky-600 tracking-wider uppercase">Circular Supply Chains</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT & LOCATION MAP -->
+        <section id="contact" class="py-24 bg-stone-900 text-white relative overflow-hidden">
+            <div class="absolute w-96 h-96 bg-brand-600/10 rounded-full blur-3xl -top-24 -left-24"></div>
+            <div class="absolute w-96 h-96 bg-accent-500/5 rounded-full blur-3xl -bottom-24 -right-24"></div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-start mb-16">
+                    
+                    <div class="space-y-8">
+                        <div>
+                            <span class="text-xs font-bold text-brand-400 uppercase tracking-widest">Inquiries & Partnerships</span>
+                            <h2 class="font-display font-extrabold text-3xl sm:text-4xl tracking-tight mt-3 mb-6">
+                                Get In Touch
+                            </h2>
+                            <p class="text-stone-300 font-normal leading-relaxed">
+                                Connect directly with Md. Abu Sayem or our commercial trading department to discuss bulk commodity sales, agri-processing setups, or consulting.
+                            </p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-400">
+                                    <svg class="w-5 h-5"><use href="#icon-mail"></use></svg>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] text-stone-400 uppercase tracking-widest font-bold">Direct Email</span>
+                                    <a :href="'mailto:' + site.email" class="font-medium text-stone-200 hover:text-white transition-colors" x-text="site.email"></a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-400">
+                                    <svg class="w-5 h-5"><use href="#icon-phone"></use></svg>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] text-stone-400 uppercase tracking-widest font-bold">Phone Contact</span>
+                                    <span class="font-medium text-stone-200" x-text="site.phone"></span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-400">
+                                    <svg class="w-5 h-5"><use href="#icon-map-pin"></use></svg>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] text-stone-400 uppercase tracking-widest font-bold">Corporate Headquarters</span>
+                                    <span class="font-medium text-stone-200 text-sm leading-relaxed" x-text="site.location"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md" x-data="{ inquiryType: 'wholesale', senderName: '', senderEmail: '', messageText: '' }">
+                        <h3 class="font-display font-semibold text-lg mb-6">Send A Message</h3>
+                        
+                        <!-- Inquiry Category Selector -->
+                        <div class="mb-6">
+                            <label class="block text-[10px] text-stone-400 font-semibold mb-3 uppercase tracking-wider">Select Inquiry Type</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button type="button" @click="inquiryType = 'wholesale'" :class="inquiryType === 'wholesale' ? 'bg-brand-600 text-white border-brand-500' : 'bg-white/5 text-stone-300 border-white/10'" class="px-2 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider border hover:bg-white/10 transition-all cursor-pointer text-center leading-tight">
+                                    Wholesale
+                                </button>
+                                <button type="button" @click="inquiryType = 'consulting'" :class="inquiryType === 'consulting' ? 'bg-brand-600 text-white border-brand-500' : 'bg-white/5 text-stone-300 border-white/10'" class="px-2 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider border hover:bg-white/10 transition-all cursor-pointer text-center leading-tight">
+                                    Advisory
+                                </button>
+                                <button type="button" @click="inquiryType = 'management'" :class="inquiryType === 'management' ? 'bg-brand-600 text-white border-brand-500' : 'bg-white/5 text-stone-300 border-white/10'" class="px-2 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider border hover:bg-white/10 transition-all cursor-pointer text-center leading-tight">
+                                    Research
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Context Description -->
+                        <div class="p-4 rounded-2xl bg-white/5 border border-white/5 mb-6 text-xs text-stone-300 leading-relaxed transition-all duration-300">
+                            <template x-if="inquiryType === 'wholesale'">
+                                <p>👉 <strong>Wholesale Procurement:</strong> Submit inquiries for high-volume Rice (Premium & Broken), Rice Bran, Oil Cakes, Pulses, or Edible Oils.</p>
+                            </template>
+                            <template x-if="inquiryType === 'consulting'">
+                                <p>👉 <strong>Agricultural Advisory:</strong> Request consultation on Solvent Extraction plants, refinery setups, or automated FMCG chemical plants.</p>
+                            </template>
+                            <template x-if="inquiryType === 'management'">
+                                <p>👉 <strong>Business Project Outsourcing (BPO):</strong> Inquire about our feasibility research, corporate structure design, or marketing information systems.</p>
+                            </template>
+                        </div>
+
+                        <form class="space-y-4" @submit.prevent="submitInquiry(senderName, senderEmail, messageText, inquiryType); senderName = ''; senderEmail = ''; messageText = '';">
+                            <div>
+                                <label class="block text-[10px] text-stone-300 font-bold mb-2 uppercase tracking-wider">Full Name</label>
+                                <input type="text" x-model="senderName" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500 focus:bg-white/10 transition-all text-white placeholder-stone-400/60" placeholder="John Doe" required>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] text-stone-300 font-bold mb-2 uppercase tracking-wider">Email Address</label>
+                                <input type="email" x-model="senderEmail" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500 focus:bg-white/10 transition-all text-white placeholder-stone-400/60" placeholder="john@example.com" required>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] text-stone-300 font-bold mb-2 uppercase tracking-wider">Message</label>
+                                <textarea rows="4" x-model="messageText" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500 focus:bg-white/10 transition-all text-white placeholder-stone-400/60 resize-none" placeholder="Type your inquiry details..." required></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold shadow-lg shadow-brand-600/20 active:scale-95 transition-all duration-300 cursor-pointer">
+                                Submit Inquiry
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <hr class="border-stone-800 mb-8">
+
+                <!-- Footer Bottom Details -->
+                <div class="flex flex-col md:flex-row items-center justify-between text-xs text-stone-400 gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg overflow-hidden bg-white border border-stone-800 p-0.5 shadow-inner">
+                            <img :src="site.logoUrl || 'logo.png'" alt="HNABC Logo" class="w-full h-full object-contain">
+                        </div>
+                        <span>© <span x-text="new Date().getFullYear()"></span> <span x-text="site.name"></span>. Founder: <span x-text="site.proprietor"></span></span>
+                    </div>
+                    <div class="flex gap-6">
+                        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FLOATING WHATSAPP BUTTON WITH PULSE EFFECT -->
+        <a href="https://wa.me/8801714718312?text=Hello%20HN%20Agri%20Business%20Corporation,%20I%20would%20like%20to%20inquire%20about%20your%20services." 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_24px_rgba(37,211,102,0.6)] hover:scale-110 active:scale-95 transition-all duration-300 group cursor-pointer"
+           aria-label="Contact on WhatsApp">
+            <span class="absolute inset-0 rounded-full bg-[#25D366]/40 animate-ping group-hover:animate-none"></span>
+            <svg class="w-7 h-7 text-white relative z-10" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.012 2c-5.506 0-9.988 4.476-9.988 9.977 0 1.94.558 3.755 1.523 5.305l-1.527 5.586 5.736-1.493a9.92 9.92 0 004.256.974c5.506 0 9.988-4.477 9.988-9.978C22 6.476 17.518 2 12.012 2zm5.783 14.153c-.237.666-1.189 1.22-1.637 1.272-.435.051-.832.228-2.73-.522-2.428-.96-3.957-3.442-4.077-3.603-.12-.162-.977-1.306-.977-2.49 0-1.186.6-1.767.817-2.008.217-.242.474-.303.632-.303.158 0 .317.001.455.008.146.007.34-.027.531.429.199.475.679 1.66.74 1.78.06.121.099.263.018.423-.08.161-.122.263-.243.404-.121.14-.256.315-.365.422-.121.119-.248.249-.107.493.141.243.626 1.034 1.344 1.674.927.824 1.706 1.077 1.949 1.199.243.121.385.101.528-.06.142-.162.607-.707.77-1.071.162-.363.324-.303.548-.222.223.081 1.417.667 1.66.788.243.121.405.182.465.283.06.101.06.587-.177 1.253z"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- SECURE ADMIN GATEWAY MODULE -->
+    <div x-show="showAdmin"
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         class="fixed inset-0 z-50 min-h-screen flex items-center justify-center bg-stone-50/95 backdrop-blur-sm p-6 overflow-y-auto">
+        
+        <!-- SECURE CORNER LOGIN MODAL -->
+        <div x-show="!isAuthenticated" class="w-full max-w-sm bg-white p-6 rounded-2xl border border-stone-200 shadow-xl space-y-5 text-stone-800 animate-fade-in-up">
+            <div class="text-center space-y-2">
+                <img :src="site.logoUrl || 'logo.png'" class="h-12 w-auto mx-auto bg-white p-1 rounded-lg border border-stone-200 shadow-sm" alt="HNABC Logo">
+                <h2 class="text-lg font-bold text-stone-900 tracking-tight">HNABC Secure Gateway</h2>
+                <p class="text-[10px] text-stone-400 font-light leading-relaxed">Please input operator credentials to unlock configuration state.</p>
+            </div>
+
+            <form @submit.prevent="submitLogin()" class="space-y-4">
+                <div>
+                    <label class="block text-[10px] uppercase font-bold text-stone-500 mb-1">Operator Identity</label>
+                    <input type="text" x-model="inputUser" placeholder="Username" class="w-full bg-stone-50 border border-stone-200 text-stone-900 placeholder-stone-400 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-brand-500 focus:bg-white transition-all" required>
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold text-stone-500 mb-1">Security Cipher Access</label>
+                    <input type="password" x-model="inputPass" placeholder="Password" class="w-full bg-stone-50 border border-stone-200 text-stone-900 placeholder-stone-400 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-brand-500 focus:bg-white transition-all" required>
+                </div>
+                <div x-show="loginError" class="text-red-600 text-xs font-semibold bg-red-50 border border-red-200 p-2.5 rounded-lg" x-text="loginError"></div>
+                
+                <button type="submit" class="w-full bg-stone-900 hover:bg-brand-600 text-white font-bold py-2.5 rounded-xl text-xs tracking-wider uppercase transition-colors duration-300 shadow-md shadow-stone-900/10 cursor-pointer active:scale-95">
+                    Authenticate Credentials
+                </button>
+            </form>
+            <div class="text-center">
+                <a href="#" @click.prevent="showAdmin = false" class="text-xs text-stone-500 hover:text-stone-400 transition-colors">&larr; Return to Public Frontsite</a>
+            </div>
+        </div>
+
+        <!-- FULL-FEATURED CORPORATE CONTENT EDITOR DASHBOARD -->
+        <div x-show="isAuthenticated" class="w-full max-w-3xl bg-white p-6 rounded-2xl border border-stone-200/80 shadow-lg space-y-6 my-8 text-stone-800 animate-fade-in-up">
+            
+            <!-- EDITOR CONTROLS HEADER -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-stone-200 pb-3.5">
+                <div>
+                    <h2 class="text-lg font-black text-stone-900 tracking-tight">Corporate Editor</h2>
+                    <p class="text-[9px] text-stone-500">Modifying live local runtime configurations and schema entities.</p>
+                </div>
+                <div class="flex gap-2 w-full sm:w-auto">
+                    <button @click="logout()" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 border border-stone-200 hover:bg-stone-50 text-stone-700 px-3.5 py-2 rounded-xl font-semibold text-[10px] tracking-wide uppercase transition-all cursor-pointer active:scale-[0.97]">
+                        <svg class="w-3.5 h-3.5"><use href="#icon-logout"></use></svg>
+                        <span>Logout</span>
+                    </button>
+                    <button @click="saveData()" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-stone-900 hover:bg-brand-600 text-white px-4 py-2 rounded-xl font-bold text-[10px] tracking-wide uppercase transition-all shadow-md shadow-stone-900/10 cursor-pointer active:scale-[0.97]">
+                        <svg class="w-3.5 h-3.5"><use href="#icon-check"></use></svg>
+                        <span>Save & Apply</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- TAB ENGINE MENU BAR -->
+            <div class="flex border border-stone-200/80 text-[10px] font-bold uppercase tracking-wider bg-stone-50 rounded-xl overflow-hidden">
+                <button @click="adminTab = 'general'" class="flex-1 py-3 text-center border-b-2 transition-all" :class="adminTab === 'general' ? 'border-brand-600 text-brand-700 bg-white font-bold' : 'border-transparent text-stone-500 hover:bg-stone-100/50'">
+                    General Info
+                </button>
+                <button @click="adminTab = 'journey'" class="flex-1 py-3 text-center border-b-2 transition-all" :class="adminTab === 'journey' ? 'border-brand-600 text-brand-700 bg-white font-bold' : 'border-transparent text-stone-500 hover:bg-stone-100/50'">
+                    Journey & Strengths
+                </button>
+                <button @click="adminTab = 'catalog'" class="flex-1 py-3 text-center border-b-2 transition-all" :class="adminTab === 'catalog' ? 'border-brand-600 text-brand-700 bg-white font-bold' : 'border-transparent text-stone-500 hover:bg-stone-100/50'">
+                    Products & Services
+                </button>
+                <button @click="adminTab = 'messages'" class="flex-1 py-3 text-center border-b-2 transition-all" :class="adminTab === 'messages' ? 'border-brand-600 text-brand-700 bg-white font-bold' : 'border-transparent text-stone-500 hover:bg-stone-100/50'">
+                    Inquiries <span class="ml-1 px-1.5 py-0.5 rounded-full bg-brand-500 text-white text-[8px]" x-text="site.messages ? site.messages.length : 0"></span>
+                </button>
+                <button @click="adminTab = 'theme'" class="flex-1 py-3 text-center border-b-2 transition-all" :class="adminTab === 'theme' ? 'border-brand-600 text-brand-700 bg-white font-bold' : 'border-transparent text-stone-500 hover:bg-stone-100/50'">
+                    Theme & Export
+                </button>
+            </div>
+
+            <!-- DATA ENTRY COMPONENT PANELS -->
+            <div class="space-y-6 min-h-[40vh] max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                
+                <!-- PANEL: GENERAL -->
+                <div x-show="adminTab === 'general'" class="space-y-5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">Corporate Profile Name</label>
+                            <input type="text" x-model="site.name" class="w-full border border-stone-200 px-4 py-3 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">Executive Proprietor</label>
+                            <input type="text" x-model="site.proprietor" class="w-full border border-stone-200 px-4 py-3 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">Proprietor Title</label>
+                            <input type="text" x-model="site.title" class="w-full border border-stone-200 px-4 py-3 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">Proprietor Image URL</label>
+                            <input type="text" x-model="site.proprietorImage" class="w-full border border-stone-200 px-4 py-3 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">Established Year</label>
+                            <input type="text" x-model="site.established" class="w-full border border-stone-200 px-4 py-3 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">Company Type</label>
+                            <input type="text" x-model="site.type" class="w-full border border-stone-200 px-4 py-3 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">Global Logo URL</label>
+                            <input type="text" x-model="site.logoUrl" class="w-full border border-stone-200 px-4 py-3 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">Global Hero Banner URL</label>
+                            <input type="text" x-model="site.bannerUrl" class="w-full border border-stone-200 px-4 py-3 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">About Summary Narrative</label>
+                        <textarea x-model="site.about" rows="3" class="w-full border border-stone-200 p-4 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm resize-none"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">National Agricultural Vision</label>
+                        <textarea x-model="site.vision" rows="3" class="w-full border border-stone-200 p-4 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm resize-none"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">Corporate Commitment</label>
+                        <textarea x-model="site.commitment" rows="2" class="w-full border border-stone-200 p-4 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm resize-none"></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">Primary Hotline Route</label>
+                            <input type="text" x-model="site.phone" class="w-full border border-stone-200 px-4 py-3 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm font-mono">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">Corporate Inbox Endpoint</label>
+                            <input type="text" x-model="site.email" class="w-full border border-stone-200 px-4 py-3 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm font-mono">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-stone-500 mb-1.5">Corporate HQ Location Address</label>
+                        <input type="text" x-model="site.location" class="w-full border border-stone-200 px-4 py-3 rounded-xl bg-stone-50 focus:bg-white focus:outline-emerald-600 text-sm">
+                    </div>
+                </div>
+
+                <!-- PANEL: JOURNEY TIMELINE & STRENGTHS -->
+                <div x-show="adminTab === 'journey'" class="space-y-6">
+                    
+                    <!-- Strengths Tags section -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-stone-700">Core Strengths & Expertise Tags</h3>
+                            <button @click="addExpertise()" class="flex items-center gap-1 bg-stone-900 hover:bg-emerald-600 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition-colors cursor-pointer">
+                                <svg class="w-3.5 h-3.5"><use href="#icon-plus"></use></svg>
+                                <span>Add Skill</span>
+                            </button>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 p-4 bg-stone-50 border border-stone-200 rounded-xl">
+                            <template x-for="(skill, index) in site.expertise" :key="index">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-stone-200 rounded-lg text-xs font-semibold text-stone-700">
+                                    <span x-text="skill"></span>
+                                    <button @click="removeExpertise(index)" class="text-stone-400 hover:text-red-500 font-bold ml-1 cursor-pointer">&times;</button>
+                                </span>
+                            </template>
+                        </div>
+                    </div>
+
+                    <hr class="border-stone-100">
+
+                    <!-- Milestones matrix section -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-stone-700">Professional Experience Matrix</h3>
+                            <button @click="addJourney()" class="flex items-center gap-1 bg-stone-900 hover:bg-emerald-600 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition-colors cursor-pointer">
+                                <svg class="w-3.5 h-3.5"><use href="#icon-plus"></use></svg>
+                                <span>Add Milestone</span>
+                            </button>
+                        </div>
+
+                        <div class="space-y-4">
+                            <template x-for="(job, index) in site.journey" :key="index">
+                                <div class="p-5 border border-stone-200 bg-stone-50 rounded-2xl relative space-y-3 shadow-sm">
+                                    <button @click="removeJourney(index)" class="absolute top-4 right-4 text-stone-400 hover:text-red-500 font-bold cursor-pointer" title="Delete Milestone">
+                                        <svg class="w-4 h-4"><use href="#icon-trash"></use></svg>
+                                    </button>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                        <div class="sm:col-span-2">
+                                            <label class="block text-[10px] font-bold text-stone-500 mb-1 uppercase tracking-wider">Role Title</label>
+                                            <input type="text" x-model="job.role" class="w-full border border-stone-200 p-2 rounded-lg bg-white text-xs">
+                                        </div>
+                                        <div>
+                                            <label class="block text-[10px] font-bold text-stone-500 mb-1 uppercase tracking-wider">Period</label>
+                                            <input type="text" x-model="job.period" class="w-full border border-stone-200 p-2 rounded-lg bg-white text-xs">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-stone-500 mb-1 uppercase tracking-wider">Institution / Company</label>
+                                        <input type="text" x-model="job.company" class="w-full border border-stone-200 p-2 rounded-lg bg-white text-xs">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-stone-500 mb-1 uppercase tracking-wider">Milestone Achievements Details</label>
+                                        <textarea x-model="job.details" rows="2" class="w-full border border-stone-200 p-2 rounded-lg bg-white text-xs resize-none"></textarea>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL: PRODUCTS & SERVICES CATALOG -->
+                <div x-show="adminTab === 'catalog'" class="space-y-6">
+                    
+                    <!-- Products -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-stone-700">Products Catalog Portfolio</h3>
+                            <button @click="addProduct()" class="flex items-center gap-1 bg-stone-900 hover:bg-emerald-600 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition-colors cursor-pointer">
+                                <svg class="w-3.5 h-3.5"><use href="#icon-plus"></use></svg>
+                                <span>Append New Product Card</span>
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <template x-for="(prod, idx) in site.products" :key="prod.id">
+                                <div class="p-5 border border-stone-200 bg-stone-50 rounded-2xl relative space-y-3 shadow-sm flex flex-col justify-between pt-12">
+                                    <button @click="removeProduct(idx)" class="absolute top-4 right-4 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200/50 hover:border-red-300 font-bold px-2 py-1 rounded-lg text-[10px] tracking-wide transition-all cursor-pointer flex items-center gap-1 shadow-sm" title="Delete Product">
+                                        <span>✕ Delete Card</span>
+                                    </button>
+
+                                    <div class="space-y-2">
+                                        <div>
+                                            <label class="block text-[10px] font-bold text-stone-500 mb-1 uppercase tracking-wider">Product Name</label>
+                                            <input type="text" x-model="prod.name" class="w-full border border-stone-200 p-2.5 rounded-lg bg-white text-xs font-bold">
+                                        </div>
+                                        <div>
+                                            <label class="block text-[10px] font-bold text-stone-500 mb-1 uppercase tracking-wider">Image Resource Link</label>
+                                            <input type="text" x-model="prod.image" class="w-full border border-stone-200 p-2.5 rounded-lg bg-white text-xs font-mono">
+                                        </div>
+                                        <div>
+                                            <label class="block text-[10px] font-bold text-stone-500 mb-1 uppercase tracking-wider">Description Details</label>
+                                            <textarea x-model="prod.description" rows="3" class="w-full border border-stone-200 p-2.5 rounded-lg bg-white text-xs resize-none leading-relaxed"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <hr class="border-stone-100">
+
+                    <!-- Services -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-stone-700">Professional Services Set</h3>
+                            <button @click="addService()" class="flex items-center gap-1 bg-stone-900 hover:bg-emerald-600 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition-colors cursor-pointer">
+                                <svg class="w-3.5 h-3.5"><use href="#icon-plus"></use></svg>
+                                <span>Add Service Card</span>
+                            </button>
+                        </div>
+
+                        <div class="space-y-4">
+                            <template x-for="(srv, idx) in site.services" :key="srv.id">
+                                <div class="p-5 border border-stone-200 bg-stone-50 rounded-2xl relative space-y-3 shadow-sm">
+                                    <button @click="removeService(idx)" class="absolute top-4 right-4 text-stone-400 hover:text-red-500 font-bold cursor-pointer" title="Delete Service">
+                                        <svg class="w-4 h-4"><use href="#icon-trash"></use></svg>
+                                    </button>
+
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-stone-500 mb-1 uppercase tracking-wider">Service Title</label>
+                                        <input type="text" x-model="srv.title" class="w-full border border-stone-200 p-2.5 rounded-lg bg-white text-xs font-bold">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-stone-500 mb-1 uppercase tracking-wider">Description Details</label>
+                                        <textarea x-model="srv.description" rows="2" class="w-full border border-stone-200 p-2.5 rounded-lg bg-white text-xs resize-none leading-relaxed"></textarea>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL: INQUIRIES/MESSAGES -->
+                <div x-show="adminTab === 'messages'" class="space-y-4">
+                    <div class="flex justify-between items-center pb-2 border-b border-stone-150">
+                        <div>
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-stone-700">Submitted Client Inquiries</h3>
+                            <p class="text-[10px] text-stone-500">Inbox containing inquiries sent via the Contact Form.</p>
+                        </div>
+                        <button @click="clearAllMessages()" x-show="site.messages && site.messages.length > 0" class="px-3 py-1.5 rounded-lg border border-stone-200 text-stone-600 hover:bg-red-50 hover:text-red-600 text-[10px] font-bold transition-all cursor-pointer">
+                            Clear Inbox
+                        </button>
+                    </div>
+
+                    <div class="space-y-3">
+                        <template x-if="!site.messages || site.messages.length === 0">
+                            <div class="text-center py-8 bg-stone-50 rounded-2xl border border-dashed border-stone-200">
+                                <svg class="w-8 h-8 mx-auto text-stone-350 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 19v-8.93a2 2 0 01.89-1.664l8-5.333a2 2 0 012.22 0l8 5.333A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-2.25-1.5a2 2 0 00-2.22 0l-2.25 1.5"></path></svg>
+                                <span class="text-xs text-stone-400">No messages in inbox.</span>
+                            </div>
+                        </template>
+
+                        <template x-for="msg in site.messages" :key="msg.id">
+                            <div class="p-4 rounded-xl bg-stone-50 border border-stone-200/70 hover:border-stone-300 transition-all flex flex-col justify-between gap-3 relative group">
+                                <div class="flex items-start justify-between gap-4">
+                                    <div class="space-y-1">
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-bold text-xs text-stone-800" x-text="msg.name"></span>
+                                            <span class="text-[9px] px-2 py-0.5 rounded-full bg-stone-200 text-stone-600 font-bold uppercase tracking-wider" x-text="msg.category"></span>
+                                        </div>
+                                        <div class="text-[10px] text-stone-400 font-mono" x-text="msg.email"></div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-[9px] text-stone-400" x-text="msg.date"></span>
+                                        <button @click="deleteMessage(msg.id)" class="text-stone-400 hover:text-red-650 p-1 rounded transition-colors cursor-pointer" title="Delete Inquiry">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-stone-600 bg-white p-3 rounded-lg border border-stone-100 leading-relaxed font-light whitespace-pre-line" x-text="msg.text"></p>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- PANEL: THEMES & SOURCE CODE EXPORT -->
+                <div x-show="adminTab === 'theme'" class="space-y-6">
+                    <div>
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-stone-700 mb-3">Color Scheme Palette</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button @click="site.theme.current = 'emerald'" class="p-4 rounded-xl border flex items-center gap-3 transition-all cursor-pointer" :class="site.theme.current === 'emerald' ? 'bg-emerald-50 border-emerald-500 text-emerald-950 font-bold' : 'bg-stone-50 border-stone-200 text-stone-500 hover:bg-stone-100'">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500 shrink-0"></div>
+                                <span class="text-xs">Forest Emerald</span>
+                            </button>
+
+                            <button @click="site.theme.current = 'amber'" class="p-4 rounded-xl border flex items-center gap-3 transition-all cursor-pointer" :class="site.theme.current === 'amber' ? 'bg-amber-50 border-amber-500 text-amber-950 font-bold' : 'bg-stone-50 border-stone-200 text-stone-500 hover:bg-stone-100'">
+                                <div class="w-6 h-6 rounded-full bg-amber-500 shrink-0"></div>
+                                <span class="text-xs">Golden Amber</span>
+                            </button>
+
+                            <button @click="site.theme.current = 'ocean'" class="p-4 rounded-xl border flex items-center gap-3 transition-all cursor-pointer" :class="site.theme.current === 'ocean' ? 'bg-sky-50 border-sky-500 text-sky-950 font-bold' : 'bg-stone-50 border-stone-200 text-stone-500 hover:bg-stone-100'">
+                                <div class="w-6 h-6 rounded-full bg-sky-500 shrink-0"></div>
+                                <span class="text-xs">Deep Ocean</span>
+                            </button>
+
+                            <button @click="site.theme.current = 'forest'" class="p-4 rounded-xl border flex items-center gap-3 transition-all cursor-pointer" :class="site.theme.current === 'forest' ? 'bg-stone-100 border-stone-500 text-stone-900 font-bold' : 'bg-stone-50 border-stone-200 text-stone-500 hover:bg-stone-100'">
+                                <div class="w-6 h-6 rounded-full bg-stone-500 shrink-0"></div>
+                                <span class="text-xs">Eco Sage</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <hr class="border-stone-100">
+
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-stone-700">Export siteData.js Code</h3>
+                            <button @click="copyExportCode()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-emerald-600 text-white font-bold text-xs transition-colors cursor-pointer">
+                                <span>Copy Module JS</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-stone-500 mb-3 leading-relaxed">Copy this block of JavaScript and paste it directly into your local `siteData.js` file to persist updates permanently inside source control repository.</p>
+                        
+                        <textarea readonly rows="8" class="w-full bg-stone-950 border border-stone-850 rounded-xl p-4 text-[10px] font-mono focus:outline-none text-emerald-400 custom-scrollbar selection:bg-emerald-600/30" x-text="getExportCode()"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EDITOR PANEL ACTIONS FOOTER -->
+            <div class="pt-4 border-t border-stone-150 flex justify-between items-center bg-white">
+                <button @click="resetDefaults()" class="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl border border-stone-200 text-stone-500 font-semibold text-[10px] tracking-wider uppercase hover:bg-stone-50 hover:text-stone-700 active:scale-[0.97] transition-all cursor-pointer">
+                    <svg class="w-3.5 h-3.5"><use href="#icon-refresh"></use></svg>
+                    <span>Reset Defaults</span>
+                </button>
+                <button @click="saveData()" class="flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-stone-900 hover:bg-brand-600 text-white font-bold text-[10px] tracking-wider uppercase active:scale-[0.97] transition-all cursor-pointer shadow-sm shadow-stone-900/10">
+                    <svg class="w-3.5 h-3.5"><use href="#icon-check"></use></svg>
+                    <span>Save Changes</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- NOTIFICATION SYSTEM TOASTS CONTAINER -->
+    <div class="fixed bottom-6 left-6 z-50 flex flex-col gap-3 w-80 max-w-full pointer-events-none">
+        <template x-for="t in toasts" :key="t.id">
+            <div x-show="true"
+                 x-transition:enter="transform transition ease-out duration-300"
+                 x-transition:enter-start="translate-y-4 opacity-0 scale-95"
+                 x-transition:enter-end="translate-y-0 opacity-100 scale-100"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="opacity-100 scale-100"
+                 x-transition:leave-end="opacity-0 scale-90"
+                 class="pointer-events-auto p-4 rounded-xl flex items-start gap-3 shadow-xl backdrop-blur-md bg-stone-900/95 border border-white/10 text-white">
+                <div class="w-6 h-6 rounded-lg bg-white/15 flex items-center justify-center text-emerald-400 shrink-0">
+                    <svg class="w-4 h-4 text-emerald-400">
+                        <use :href="t.type === 'success' ? '#icon-check' : '#icon-info'"></use>
+                    </svg>
+                </div>
+                <div class="flex-1">
+                    <span class="block text-xs font-semibold" x-text="t.message"></span>
+                </div>
+                <button @click="removeToast(t.id)" class="text-stone-400 hover:text-white transition-colors shrink-0 cursor-pointer">
+                    <svg class="w-3.5 h-3.5"><use href="#icon-close"></use></svg>
+                </button>
+            </div>
+        </template>
+    </div>
+
+</body>
+</html>
